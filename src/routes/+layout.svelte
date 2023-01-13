@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import HelpIcon from '../lib/HelpIcon.svelte';
+	import HelpIcon from '../lib/icons/HelpIcon.svelte';
 </script>
 
 <div class="bg-slate-800">
@@ -17,4 +17,17 @@
 	<div class="flex h-screen items-center justify-center p-4">
 		<slot />
 	</div>
+	<footer class="absolute bottom-0 flex w-screen items-center py-2 px-4">
+		<span class="text-xs text-white">
+			Made by
+			<a
+				class="font-bold underline transition-all hover:text-rose-600"
+				href="https://github.com/defyentropy"
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				@defyentropy
+			</a>
+		</span>
+	</footer>
 </div>

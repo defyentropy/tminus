@@ -1,6 +1,8 @@
 <script>
-	import ClockIcon from '../lib/ClockIcon.svelte';
+	import ClockIcon from '../lib/icons/ClockIcon.svelte';
 	import { goto } from '$app/navigation';
+	import { encodeURL } from '$lib/url';
+	import FormInput from '../lib/components/FormInput.svelte';
 
 	let month;
 	let day;
@@ -12,7 +14,7 @@
 	// calculate number of days in each month
 	let date = new Date();
 
-	let thisYear = date.getYear();
+	let thisYear = date.getFullYear();
 	if (date.getMonth() > 1) {
 		thisYear += 1;
 	}
@@ -69,7 +71,7 @@
 		}
 
 		// hour validation
-		if (hour < 1 || hour > 12) {
+		if (hour < 1 || hour > 24) {
 			errorMessage = 'Hour out of range.';
 			processing = false;
 			return;
@@ -83,7 +85,7 @@
 		}
 
 		// no errors
-		await goto('/view/test');
+		await goto(`/view/${encodeURL(month, day, hour, minute)}`);
 		processing = false;
 	};
 </script>
@@ -96,58 +98,26 @@
 	/>
 </svelte:head>
 
-<div class="mx-auto my-auto max-w-lg p-2">
+<div class="max-w-lg p-2">
 	<form on:submit|preventDefault={handleSubmit}>
 		<div class="mx-auto grid aspect-square w-72 grid-cols-2 grid-rows-2 gap-2 p-4">
 			<!-- Month -->
-			<label class="flex flex-col items-center text-sm text-slate-400 focus-within:text-rose-600">
-				Month
-				<input
-					type="number"
-					class="aspect-square rounded border border-slate-200 bg-slate-200 p-1 text-center text-6xl text-rose-600 placeholder-transparent transition-colors placeholder-shown:border-slate-700 placeholder-shown:bg-slate-700 focus:border-rose-600 focus:outline-none"
-					placeholder="0"
-					bind:value={month}
-					autocomplete="off"
-				/>
-			</label>
+			<FormInput label="Month" bind:value={month} />
 			<!-- Day -->
-			<label class="flex flex-col items-center text-sm text-slate-400 focus-within:text-rose-600">
-				Day
-				<input
-					type="number"
-					class="aspect-square rounded border border-slate-200 bg-slate-200 p-1 text-center text-6xl text-rose-600 placeholder-transparent transition-colors placeholder-shown:border-slate-700 placeholder-shown:bg-slate-700 focus:border-rose-600 focus:outline-none"
-					placeholder="0"
-					bind:value={day}
-					autocomplete="off"
-				/>
-			</label>
+			<FormInput label="Date" bind:value={day} />
 			<!-- Hour -->
-			<label class="flex flex-col items-center text-sm text-slate-400 focus-within:text-rose-600">
-				Hour
-				<input
-					type="number"
-					class="aspect-square rounded border border-slate-200 bg-slate-200 p-1 text-center text-6xl text-rose-600 placeholder-transparent transition-colors placeholder-shown:border-slate-700 placeholder-shown:bg-slate-700 focus:border-rose-600 focus:outline-none"
-					placeholder="0"
-					bind:value={hour}
-					autocomplete="off"
-				/>
-			</label>
+			<FormInput label="Hour" bind:value={hour} />
 			<!-- Minute -->
-			<label class="flex flex-col items-center text-sm text-slate-400 focus-within:text-rose-600">
-				Minutes
-				<input
-					type="number"
-					class="aspect-square rounded border border-slate-200 bg-slate-200 p-1 text-center text-6xl text-rose-600 placeholder-transparent transition-colors placeholder-shown:border-slate-700 placeholder-shown:bg-slate-700 focus:border-rose-600 focus:outline-none"
-					placeholder="0"
-					bind:value={minute}
-					autocomplete="off"
-				/>
-			</label>
+			<FormInput label="Minutes" bind:value={minute} />
 		</div>
-		<p class="mb-4 h-4 text-center text-sm font-bold text-red-600">{errorMessage}</p>
+		{#if errorMessage}
+			<p class="mb-4 h-4 text-center text-sm font-bold text-red-600">{errorMessage}</p>
+		{:else}
+			<p class="mb-4 h-4 text-center text-sm font-bold text-white">Please use 24-hour time.</p>
+		{/if}
 		<button
 			disabled={processing}
-			class="mx-auto flex cursor-pointer gap-2 rounded-sm bg-rose-600 p-2 font-bold text-white transition-all hover:bg-rose-700 focus:outline-none disabled:cursor-default disabled:bg-rose-400"
+			class="mx-auto flex cursor-pointer items-center gap-2 rounded bg-rose-600 p-2 font-bold text-white transition-all hover:bg-rose-700 focus:outline-none disabled:cursor-default disabled:bg-rose-400"
 			type="submit"
 		>
 			<ClockIcon className=" text-white" />
@@ -155,11 +125,3 @@
 		</button>
 	</form>
 </div>
-
-<style>
-	input[type='number']::-webkit-inner-spin-button,
-	input[type='number']::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-</style>
