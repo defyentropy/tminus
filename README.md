@@ -1,4 +1,4 @@
-# About tminus
+# About [tminus](https://tminus-ecru.vercel.app)
 
 I made this app so I could have a countdown timer to share with friends for important events, because opening the Clock app and keeping it open is a pretty big hassle.
 
