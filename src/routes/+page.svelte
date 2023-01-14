@@ -50,7 +50,7 @@
 		processing = true;
 		errorMessage = '';
 
-		if (!(month && day && hour && minute)) {
+		if (!(month && day && hour != undefined && minute != undefined)) {
 			errorMessage = 'Please fill out all fields.';
 			processing = false;
 			return;
@@ -71,7 +71,7 @@
 		}
 
 		// hour validation
-		if (hour < 1 || hour > 24) {
+		if (hour < 0 || hour > 23) {
 			errorMessage = 'Hour out of range.';
 			processing = false;
 			return;

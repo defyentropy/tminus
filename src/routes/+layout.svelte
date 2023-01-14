@@ -1,6 +1,17 @@
 <script>
 	import '../app.css';
 	import HelpIcon from '../lib/icons/HelpIcon.svelte';
+	import BackIcon from '../lib/icons/BackIcon.svelte';
+	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
+
+	let about;
+	// onMount(() => {
+	// 	about = window.location.href.includes('about');
+	// });
+	afterNavigate(() => {
+		about = window.location.href.includes('about');
+	});
 </script>
 
 <div class="bg-slate-800">
@@ -11,9 +22,15 @@
 			<a href="/">tminus</a>
 		</span>
 		<div>
-			<a href="/about">
-				<HelpIcon className="text-white hover:text-rose-600 transition" />
-			</a>
+			{#if about}
+				<a href="/">
+					<BackIcon className="text-white hover:text-rose-600 transition" />
+				</a>
+			{:else}
+				<a href="/about">
+					<HelpIcon className="text-white hover:text-rose-600 transition" />
+				</a>
+			{/if}
 		</div>
 	</nav>
 	<div class="flex h-screen items-center justify-center p-4">
