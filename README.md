@@ -1,38 +1,38 @@
-# create-svelte
+# About tminus
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+I made this app so I could have a countdown timer to share with friends for important events, because opening the Clock app and keeping it open is a pretty big hassle.
 
-## Creating a project
+A few things to note:
 
-If you're seeing this, you've probably already done this step. Congrats!
+- The app automatically considers the next occurrence of the date you enter, i.e. the one within
+  the next 365 days. I mean, it's unlikely that you would want to countdown to something more
+  than a year away.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- The app works irrespective of what time zone the user is in. For example, you could make a
+  timer for 15 minutes in the future and send it to someone across the world and they would
+  still see 15 minutes on the clock.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+This is something I put together pretty quickly, so there might yet be bugs. If you find one, I
+would love to know. Please file an issue on the GitHub repo!
 
-## Developing
+# Documentation
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## /src/lib
 
-```bash
-npm run dev
+Contains components, icons and utility functions.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## /routes/about
 
-## Building
+Contains code for the `about` page.
 
-To create a production version of your app:
+## /routes/view/[id]
 
-```bash
-npm run build
-```
+Contains code for the count down page. `id` is a route param that encodes the time a timer is counting down to.
 
-You can preview the production build with `npm run preview`.
+## /routes
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Contains code for the main page, i.e. the form to create a new timer.
+
+## /static
+
+Contains images like the favicon.

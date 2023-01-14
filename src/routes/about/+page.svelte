@@ -2,7 +2,7 @@
 	<title>About • tminus</title>
 </svelte:head>
 
-<div class="flex max-w-lg flex-col gap-4 p-2 text-white">
+<div class="flex max-w-lg flex-col gap-4 p-2 text-sm text-white sm:text-base">
 	<p>
 		I made this app so I could have a countdown timer to share with friends for important events,
 		because opening the Clock app and keeping it open is a pretty big hassle.
@@ -22,6 +22,11 @@
 	</ul>
 	<p>
 		This is something I put together pretty quickly, so there might yet be bugs. If you find one, I
-		would love to know. Please file an issue on the GitHub repo!
+		would love to know. Please file an issue on <a
+			class="font-bold underline transition-all hover:text-rose-600"
+			target="_blank"
+			rel="noopener noreferrer"
+			href="https://github.com/defyentropy/tminus">GitHub</a
+		>!
 	</p>
 </div>

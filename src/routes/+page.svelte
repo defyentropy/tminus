@@ -113,11 +113,11 @@
 		{#if errorMessage}
 			<p class="mb-4 h-4 text-center text-sm font-bold text-red-600">{errorMessage}</p>
 		{:else}
-			<p class="mb-4 h-4 text-center text-sm font-bold text-white">Please use 24-hour time.</p>
+			<p class="mb-4 h-4 text-center text-sm text-white">Please use 24-hour time.</p>
 		{/if}
 		<button
 			disabled={processing}
-			class="mx-auto flex cursor-pointer items-center gap-2 rounded bg-rose-600 p-2 font-bold text-white transition-all hover:bg-rose-700 focus:outline-none disabled:cursor-default disabled:bg-rose-400"
+			class="mx-auto flex cursor-pointer items-center gap-2 rounded bg-rose-600 p-2 font-semibold text-white transition-all hover:bg-rose-700 focus:outline-none disabled:cursor-default disabled:bg-rose-400"
 			type="submit"
 		>
 			<ClockIcon className=" text-white" />

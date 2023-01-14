@@ -81,7 +81,7 @@
 	});
 
 	const copyLinkToClipboard = async () => {
-		await navigator.clipboard.writeText('localhost:5173/view/' + data.post.id);
+		await navigator.clipboard.writeText(window.location.href + data.post.id);
 		copied = true;
 	};
 </script>
@@ -92,18 +92,22 @@
 
 <div class="max-w-lg p-2">
 	{#if status == 'PROCESSING'}
+		<!-- Processing -->
 		<div class="aspect-square w-16 animate-ping rounded-full bg-rose-600" />
 	{:else if status == 'ERROR'}
+		<!-- Error in parsing the URL -->
 		<p class="mb-2 text-center text-2xl text-white">Uh oh!</p>
 		<p class="mb-4 text-center font-bold text-red-600">{errorMessage}</p>
 		<a class="block rounded bg-rose-600 p-2 text-center transition-all hover:bg-rose-700" href="/">
 			Start a new countdown.
 		</a>
 	{:else if status == 'COMPLETED'}
+		<!-- The countdown has completed -->
 		<p class="mb-4 text-center text-8xl font-bold text-rose-600">YAYYY!</p>
 		<img class="mx-auto w-60 p-4" src="/images/rickroll.gif" alt="rickroll" />
 		<p class="mb-4 text-center text-sm italic text-white">Countdown complete!</p>
 	{:else}
+		<!-- The countdown is running -->
 		<div class="mx-auto grid aspect-square w-72 grid-cols-2 grid-rows-2 gap-2 p-4">
 			<LabelledNumber label="Days" value={days} />
 			<LabelledNumber label="Hours" value={hours} />
@@ -112,7 +116,7 @@
 		</div>
 		<p class="pb-4 text-center text-sm font-bold text-white">to {date.toString().slice(0, 24)}</p>
 		<button
-			class="mx-auto flex w-28 items-center justify-center gap-2 rounded bg-rose-600 p-2 font-bold text-white transition-all hover:bg-rose-700"
+			class="mx-auto flex w-28 items-center justify-center gap-2 rounded bg-rose-600 p-2 font-semibold text-white transition-all hover:bg-rose-700"
 			on:click={copyLinkToClipboard}
 		>
 			{#if copied}

@@ -4,7 +4,9 @@
 </script>
 
 <div class="bg-slate-800">
-	<nav class="fixed flex w-screen items-center justify-between py-2 px-4">
+	<nav
+		class="absolute top-0 flex w-screen items-center justify-between bg-slate-800 py-2 px-4 sm:px-6"
+	>
 		<span class="font-mono text-3xl font-bold text-rose-600">
 			<a href="/">tminus</a>
 		</span>
@@ -17,7 +19,7 @@
 	<div class="flex h-screen items-center justify-center p-4">
 		<slot />
 	</div>
-	<footer class="absolute bottom-0 flex w-screen items-center py-2 px-4">
+	<footer class="absolute bottom-0 flex w-screen items-center bg-slate-800 py-2 px-4 sm:px-6">
 		<span class="text-xs text-white">
 			Made by
 			<a
