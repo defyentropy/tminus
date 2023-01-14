@@ -81,7 +81,7 @@
 	});
 
 	const copyLinkToClipboard = async () => {
-		await navigator.clipboard.writeText(window.location.href + data.post.id);
+		await navigator.clipboard.writeText(window.location.href);
 		copied = true;
 	};
 </script>
